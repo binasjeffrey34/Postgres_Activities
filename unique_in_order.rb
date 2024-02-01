@@ -1,14 +1,20 @@
 def unique_order(sequence)
     unique_items = []
   
-    sequence.each_char do |item, index|
+    (0...sequence.length).each do |i|
+        current_element = sequence[i]
+
+        if current_element != sequence[i+1]
+            unique_items << current_element
+
+    #sequence.each_char do |item, index|
       # For the first element, add it to the result
-      if index == 0
-        unique_items << item
-      else
+     # if index == 0
+      #  unique_items << item
+      #else
         # Compare with the previous element, add to result if different
-        unique_items << item unless item == sequence[index.to_i - 1]
-      end
+       # unique_items << item unless item == sequence[index.to_i - 1]
+    end
     end
   
     unique_items
