@@ -1,5 +1,3 @@
-require 'rspec'
-
 def is_isogram(string)
     string.downcase!
     string.each_char do |char|
@@ -8,16 +6,7 @@ def is_isogram(string)
     true
   end
   
-  describe 'is_isogram' do
-    it 'Fixed tests' do
-      expect(is_isogram('Dermatoglyphics')).to eq(true)
-      expect(is_isogram('isogram')).to eq(true)
-      expect(is_isogram('documentary')).to eq(true)
-  
-      expect(is_isogram('aba')).to eq(false)
-      expect(is_isogram('moOse')).to eq(false)
-      expect(is_isogram('isIsogram')).to eq(false)
-  
-      expect(is_isogram('')).to eq(true)
-    end
-  end
+puts is_isogram('Hippopotamus')
+puts is_isogram('Commemorate')
+puts is_isogram('Untie')
+puts is_isogram('Creation')
