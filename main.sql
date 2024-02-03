@@ -1,29 +1,36 @@
 --Activity #1
 
 CREATE TABLE students (
-	id				INTEGER		PRIMARY KEY,
-	first_name		VARCHAR(50)	NOT NULL,
-	middle_name		VARCHAR(50),
-	last_name		VARCHAR(50)	NOT NULL,
-	age				INTEGER		NOT NULL,
-	location		VARCHAR(50) NOT NULL
+    id INTEGER PRIMARY KEY,
+    first_name VARCHAR(50) NOT NULL,
+    middle_name VARCHAR(50),
+    last_name VARCHAR(50) NOT NULL,
+    age INTEGER NOT NULL,
+    location VARCHAR(50) NOT NULL
 );
 
-INSERT INTO students (id, first_name, last_name, age, location)
+INSERT INTO students (id, first_name, middle_name, last_name, age, location)
 VALUES 
-(1, 'Juan', 'Cruz', 18, 'Manila'),
-(2, 'Anne', 'Wall', 20, 'Manila'),
-(3, 'Theresa', 'Joseph', 21, 'Manila'),
-(4, 'Isaac', 'Gray', 19, 'Laguna'),
-(5, 'Zack', 'Matthews', 22, 'Marikina'),
-(6, 'Finn', 'Lam', 25, 'Manila');
+(1, 'Juan', 'Blank', 'Cruz', 18, 'Manila'),
+(2, 'Anne', 'Blank', 'Wall', 20, 'Manila'),
+(3, 'Theresa', 'Blank', 'Joseph', 21, 'Manila'),
+(4, 'Isaac', 'Blank', 'Gray', 19, 'Laguna'),
+(5, 'Zack', 'Blank', 'Matthews', 22, 'Marikina'),
+(6, 'Finn', 'Blank', 'Lam', 25, 'Manila');
+
+
+SELECT * FROM students;
 
 UPDATE students
 SET first_name = 'Ivan', middle_name = 'Ingram', last_name = 'Howard', age = 25, location = 'Bulacan'
 WHERE id = 1;
 
+SELECT * FROM students;
+
 DELETE FROM students
 WHERE id = (SELECT MAX(id) FROM students);
+
+SELECT * FROM students;
 
 
 ----------------------------------------------------------------
@@ -46,24 +53,25 @@ ORDER BY age DESC;
 --JOINS Activity
 
 CREATE TABLE research_papers (
-    id SERIAL PRIMARY KEY,
+    id PRIMARY KEY,
     student_id INTEGER REFERENCES students(id),
     grade CHAR(1) CHECK (grade IN ('A', 'B', 'C', 'D', 'E', 'F', NULL))
 );
 
-INSERT INTO research_papers (student_id, grade)
+INSERT INTO research_papers (id, student_id, grade)
 VALUES
-(1, 'A'),
-(1, 'B'),
-(2, 'C'),
-(2, 'D'),
-(3, 'A'),
-(3, NULL),
-(4, 'B'),
-(4, 'C'),
-(5, 'F'),
-(6, NULL);
+(100, 1, 'A'),
+(101, 1, 'B'),
+(102, 2, 'C'),
+(103, 3, 'D'),
+(104, 3, 'A'),
+(105, 4, NULL),
+(106, 4, 'B'),
+(107, 5, 'C'),
+(108, 6, 'F'),
+(109, 6, NULL);
 
+SELECT * FROM research_papers;
 
 SELECT 
     s.first_name, 
@@ -77,7 +85,6 @@ GROUP BY
     s.id
 HAVING 
     COUNT(rp.id) > 1;
-
 
 
 SELECT 
